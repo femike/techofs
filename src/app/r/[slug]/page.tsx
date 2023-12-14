@@ -17,7 +17,7 @@ const page = async ({ params }: PageProps) => {
   const session = await getAuthSession()
 
   const subreddit = await db.subreddit.findFirst({
-    where: { name: slug },
+    where: { name: decodeURI(slug) },
     include: {
       posts: {
         include: {
